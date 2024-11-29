@@ -19,13 +19,14 @@ orderRoutes.post('/', authenticate, authorize("admin", "user"), placeOrder);
 
 orderRoutes.get('/', authenticate, authorize("admin"), getAllOrders);
 
+//delivery man route
+orderRoutes.get('/assigned', authenticate, authorize("delivery"), getAssignedOrders);
+
 orderRoutes.get('/:id', authenticate, authorize("admin", "user"), getOrderDetails);
 
 orderRoutes.put('/:id/status', authenticate, authorize("admin"), updateOrderStatus);
 
-//delivery man routes
-orderRoutes.get('/assigned', authenticate, authorize("delivery"), getAssignedOrders);
-
+//delivery man route
 orderRoutes.put('/:id/delivered', authenticate, authorize("delivery"), updateOrderDelivered)
 
 export default orderRoutes;

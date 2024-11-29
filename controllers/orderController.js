@@ -34,8 +34,8 @@ export const getOrderDetails = async (req, res) => {
         const id = req.params.id;
         const userId = req.userDetails._id;
         const order = await fetchOrderDetails(id);
-        if(order.userId.toString() !== userId) {
-            return res.status(403).json({ message: 'You can only see your orders' });
+        if(order.userId.toString() !== userId.toString()) {
+            return res.status(403).json({ message: `You can only see your orders.` });
         }
         res.status(200).json(order);
     } catch (error) {
@@ -69,7 +69,7 @@ export const updateOrderDelivered = async (req, res) => {
         const orderId = req.params.id;
         const status = 'completed';
         const order = await fetchOrderDetails(orderId);
-        if(order.assignedDeliveryMan._id.toString() !== req.userDetails._id) {
+        if(order.assignedDeliveryMan._id.toString() !== req.userDetails._id.toString()) {
             return res.status(403).json({ message: 'You can only update orders assigned to you' });
         }
         const completedOrder = await markOrderStatus(orderId, status);

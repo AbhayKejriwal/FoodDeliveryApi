@@ -26,28 +26,22 @@ export const createOrder = async (order) => {
 export const fetchAllOrders = async () => {
     return await Order.find()
     .populate({
-        path: 'userId',
-        select: 'name'
-    }).populate({
         path: 'foodItems',
         select: 'name price'
     }).populate({
         path: 'assignedDeliveryMan',
-        select: 'name'
+        select: 'username'
     });
 }
 
 export const fetchOrderDetails = async (id) => {
     return await Order.findById(id)
     .populate({
-        path: 'userId',
-        select: 'name'
-    }).populate({
         path: 'foodItems',
-        select: 'name price'
+        select: 'username price'
     }).populate({
         path: 'assignedDeliveryMan',
-        select: 'name'
+        select: 'username'
     });
 }
 
@@ -58,13 +52,10 @@ export const markOrderStatus = async (id, status) => {
 export const fetchAssignedOrders = async (deliveryManId) => {
     return await Order.find({ assignedDeliveryMan: deliveryManId })
     .populate({
-        path: 'userId',
-        select: 'name'
-    }).populate({
         path: 'foodItems',
         select: 'name price'
     }).populate({
         path: 'assignedDeliveryMan',
-        select: 'name'
+        select: 'username'
     });;
 }
