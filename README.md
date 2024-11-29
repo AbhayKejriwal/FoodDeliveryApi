@@ -51,7 +51,7 @@ npm start
 This will start the server on `http://localhost:5000` (or the port specified in the `.env` file).
 
 ### 5. Testing with Postman
-The results of API tests are stored in the **Postman Tests** folder. The following API endpoints have been tested.
+The results of API tests are stored in the **Postman Tests Results** folder. The following API endpoints have been tested.
 
 ### **Authentication & User Management**
 - **POST /auth/login-admin**: Admin login
