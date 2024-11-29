@@ -37,12 +37,13 @@ export async function loginAdmin(req, res) {
 }
 
 export async function loginUser(req, res) {
-    const { email, password } = req.body;
-
-    if(!email || !password) {
-        return res.status(400).json({ message: 'Please provide both email and password' });
-    }
+    
     try {
+        const { email, password } = req.body;
+
+        if(!email || !password) {
+            return res.status(400).json({ message: 'Please provide both email and password' });
+        }
         const user = await validateCredentials(email, password, 'user');
         if (!user) {
             return res.status(401).json({ message: 'Invalid credentials' });
@@ -65,12 +66,12 @@ export async function loginUser(req, res) {
 }
 
 export async function loginDeliveryMan(req, res) {
-    const { email, password } = req.body;
 
-    if(!email || !password) {
-        return res.status(400).json({ message: 'Please provide both email and password' });
-    }
     try {
+        const { email, password } = req.body;
+        if(!email || !password) {
+            return res.status(400).json({ message: 'Please provide both email and password' });
+        }
         const deliveryMan = await validateCredentials(email, password, 'delivery');
         if (!deliveryMan) {
             return res.status(401).json({ message: 'Invalid credentials' });
@@ -92,12 +93,12 @@ export async function loginDeliveryMan(req, res) {
 }
 
 export async function register(req, res) {
-    const {name, email, password, role} = req.body;
-    if(!name || !email || !password || !role) {
-        return res.status(400).json({ message: 'Please provide all required fields: name, email, password and role' });
-    }
-    const user = { name, email, password, role };
     try {
+        const {name, email, password, role} = req.body;
+        if(!name || !email || !password || !role) {
+            return res.status(400).json({ message: 'Please provide all required fields: name, email, password and role' });
+        }
+        const user = { name, email, password, role };
         const newUser = await createUser(user);
         res.status(201).json({
             message: 'User created successfully',

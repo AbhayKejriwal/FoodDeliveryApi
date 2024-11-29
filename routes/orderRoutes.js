@@ -9,36 +9,21 @@
 // Attach respective controller functions to routes
 
 import express from 'express';
+import { getAllOrders, getAssignedOrders, getOrderDetails, placeOrder, updateOrderDelivered, updateOrderStatus } from '../controllers/orderController.js';
 
 const orderRoutes = express.Router();
 
-orderRoutes.post('/', (req, res) => {
-    res.send('Create order');
-    }
-);
+orderRoutes.post('/', placeOrder);
 
-orderRoutes.get('/', (req, res) => {
-    res.send('Get all orders');
-    }
-);
+orderRoutes.get('/', getAllOrders);
 
-orderRoutes.get('/:id', (req, res) => {
-    res.send('Get order details');
-    }
-);
+orderRoutes.get('/:id', getOrderDetails);
 
-orderRoutes.put('/:id/status', (req, res) => {
-    res.send('Update order status');
-    }
-);
+orderRoutes.put('/:id/status', updateOrderStatus);
 
-orderRoutes.get('/assigned', (req, res) => {
-    res.send('Get assigned orders');
-    }
-);
+//delivery man routes
+orderRoutes.get('/assigned', getAssignedOrders);
 
-orderRoutes.put('/:id/delivered', (req, res) => {
-    res.send('Update order status to delivered');
-})
+orderRoutes.put('/:id/delivered', updateOrderDelivered)
 
 export default orderRoutes;

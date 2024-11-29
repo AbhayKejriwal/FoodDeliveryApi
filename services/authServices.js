@@ -15,6 +15,5 @@ export const validateCredentials = async (email, password, role) => {
 }
 
 export const createUser = async (user) => {
-  const newUser = new User(user);
-  return await newUser.save();
+  return await User.create(newUser);
 }
