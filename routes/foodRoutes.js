@@ -8,15 +8,17 @@
 
 import express from 'express';
 import { createFood, editFood, getAllFoods, removeFood } from '../controllers/foodController.js';
+import { authenticate } from '../middlewares/authenticate.js';
+import { authorize } from '../middlewares/authorize.js';
 
 const foodRoutes = express.Router();
 
-foodRoutes.get('/', getAllFoods);
+foodRoutes.get('/', authenticate, getAllFoods);
 
-foodRoutes.post('/', createFood);
+foodRoutes.post('/', authenticate, authorize("admin"), createFood);
 
-foodRoutes.put('/:id', editFood);
+foodRoutes.put('/:id', authenticate, authorize("admin"),  editFood);
 
-foodRoutes.delete('/:id', removeFood);
+foodRoutes.delete('/:id', authenticate, authorize("admin"),  removeFood);
 
 export default foodRoutes;

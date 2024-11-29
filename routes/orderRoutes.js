@@ -10,20 +10,22 @@
 
 import express from 'express';
 import { getAllOrders, getAssignedOrders, getOrderDetails, placeOrder, updateOrderDelivered, updateOrderStatus } from '../controllers/orderController.js';
+import { authenticate } from '../middlewares/authenticate.js';
+import { authorize } from '../middlewares/authorize.js';
 
 const orderRoutes = express.Router();
 
-orderRoutes.post('/', placeOrder);
+orderRoutes.post('/', authenticate, authorize("admin", "user"), placeOrder);
 
-orderRoutes.get('/', getAllOrders);
+orderRoutes.get('/', authenticate, authorize("admin"), getAllOrders);
 
-orderRoutes.get('/:id', getOrderDetails);
+orderRoutes.get('/:id', authenticate, authorize("admin", "user"), getOrderDetails);
 
-orderRoutes.put('/:id/status', updateOrderStatus);
+orderRoutes.put('/:id/status', authenticate, authorize("admin"), updateOrderStatus);
 
 //delivery man routes
-orderRoutes.get('/assigned', getAssignedOrders);
+orderRoutes.get('/assigned', authenticate, authorize("delivery"), getAssignedOrders);
 
-orderRoutes.put('/:id/delivered', updateOrderDelivered)
+orderRoutes.put('/:id/delivered', authenticate, authorize("delivery"), updateOrderDelivered)
 
 export default orderRoutes;

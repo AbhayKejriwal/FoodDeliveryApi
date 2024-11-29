@@ -1,7 +1,7 @@
 // Verify JWT from headers
 // Decode token, validate, and attach user data to the request object
 import { verifyToken } from "../utils/jwt.js";
-import User from "../models/userModel.js";
+import { fetchUser } from "../services/authServices.js";
 
 export const authenticate = async (req, res, next) => {
     const token = req.cookies.auth;
@@ -13,7 +13,7 @@ export const authenticate = async (req, res, next) => {
     try {
         const decoded = verifyToken(token);
         req.user = { id: decoded.userId, role: decoded.role };
-        const user = await User.findByID(req.user.id)
+        const user = await fetchUser(req.user.id)
         if(!user){
             return res.status(404).json({ message: "user not found" })
         }
