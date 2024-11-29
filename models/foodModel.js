@@ -17,10 +17,12 @@ const foodSchema = new mongoose.Schema({
         type: String 
     },
     price: { 
-        type: Number, required: true },
+        type: Number, 
+        required: true 
+    },
     category: { 
         type: String 
-    },
+    }
 });
 
 const Food = mongoose.model("Food", foodSchema);

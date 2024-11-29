@@ -6,6 +6,8 @@
 //   - fetchAssignedOrders: Find orders assigned to a delivery man
 
 import Order from '../models/orderModel.js';
+import Food from '../models/foodModel.js';
+import User from '../models/userModel.js';
 
 export const createOrder = async (order) => {
     // create a new order but also populate the food items and randomly assign a delivery man

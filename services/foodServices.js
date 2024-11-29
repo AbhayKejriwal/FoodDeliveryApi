@@ -11,7 +11,7 @@ export const fetchAllFoods = async () => {
 }
 
 export const addFood = async (food) => {
-  return await Food.create(newFood);
+  return await Food.create(food);
 }
 
 export const updateFood = async (id, food) => {
@@ -19,7 +19,7 @@ export const updateFood = async (id, food) => {
 }
 
 export const deleteFood = async (id) => {
-  return await Food.findByIdAndRemove(id);
+  return await Food.findByIdAndDelete(id);
 }
 
 //fetch food by id

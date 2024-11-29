@@ -1,9 +1,9 @@
 // Import food.service
 // Define functions:
 //   - getAllFoods: Fetch all food items and return
-//   - addFood: Validate request, call food.service, and return result
-//   - updateFood: Validate request, call food.service, and return result
-//   - deleteFood: Validate request, call food.service, and return result
+//   - createFood: Validate request, call food.service, and return result
+//   - editFood: Validate request, call food.service, and return result
+//   - removeFood: Validate request, call food.service, and return result
 
 import { fetchAllFoods, addFood, updateFood, deleteFood } from '../services/foodServices.js';
 
@@ -17,8 +17,9 @@ export const getAllFoods = async (req, res) => {
 }
 
 export const createFood = async (req, res) => {
-    const food = req.body;
+    
     try {
+        const food = req.body;
         const newFood = await addFood(food);
         res.status(201).json(newFood);
     } catch (error) {

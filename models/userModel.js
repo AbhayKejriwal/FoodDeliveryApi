@@ -1,6 +1,6 @@
 // Import mongoose
 // Define schema:
-//   - name: String (required)
+//   - username: String (required)
 //   - email: String (required, unique)
 //   - password: String (hashed)
 //   - role: String (enum: ['admin', 'user', 'delivery'], default: 'user')
