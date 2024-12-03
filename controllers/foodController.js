@@ -17,7 +17,6 @@ export const getAllFoods = async (req, res) => {
 }
 
 export const createFood = async (req, res) => {
-    
     try {
         const food = req.body;
         const newFood = await addFood(food);
